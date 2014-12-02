@@ -381,13 +381,22 @@ when she checks the log on her laptop,
 there's no depth recorded for either of those samples.
 Since it's too late to get the information any other way,
 she must exclude those two files from her analysis.
-She could just delete them using `rm`,
-but there are actually some analyses she might do later where depth doesn't matter,
-so instead, she'll just be careful later on to select files using the wildcard expression `*[AB].txt`.
-As always,
-the '\*' matches any number of characters;
-the expression `[AB]` matches either an 'A' or a 'B',
-so this matches all the valid data files she has.
+She has two options:
+
+1. Exclude the two files from the analysis 
+2. Keep the two files in the directory, but not select them
+
+For the option 1, she could use `rm` to delete the two files. However, there are, actually, some analyses she might do later where depth doesn't matter so she prefer option 2. 
+
+We can help her rewrite the `wc -l *.txt | sort -n | tail -5` command so that it would select files containing A and B before the ".txt".
+
+Which is the correct way do it:
+(HINT: the '\*' matches any number of characters and the expression `[AB]` matches either an 'A' or a 'B'
+
+1. `wc -l *[A].txt | sort -n | tail -5`
+2. `wc -l *[B].txt | sort -n | tail -5`
+3. `wc -l *[AB].txt | sort -n | tail -5`
+4. `wc -l *[*].txt | sort -n | tail -5`
 
 <div class="keypoints" markdown="1">
 
